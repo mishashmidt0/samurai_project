@@ -1,16 +1,28 @@
+import s from '../style/Profile.module.css'
+
+
 function Profile() {
     return (
-        <div className="content">
-            <div className="link_ava"></div>
+        <div className={s.content}>
+            <div className={s.profile}>
+                <h2>Mikhail Shmidt</h2>
+                <p>status</p>
+                <hr />
+                <div className={s.info}>
+                    <p>Languages: Russia</p>
+                </div>
+                <hr />
+            </div>
 
-            <section className="avatar">avatar</section>
+            <section className={s.posts}>
+                <article className={s.posts1}>
+                    <p className={s.post}></p>
+                </article>
+                <article className={s.posts2}>
+                    <p className={s.post}></p>
+                </article>
+            </section>
 
-            <article className="posts1">
-                posts1
-            </article>
-            <article className="posts1">
-                posts1
-            </article>
         </div>
     )
 }

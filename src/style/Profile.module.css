@@ -1,0 +1,29 @@
+.content {
+    width: 100%;
+}
+.profile {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 4px;
+    padding: 20px;
+}
+.content h2 {
+    font-size: 24px;
+}
+.content p {
+    margin-top: 10px;
+}
+.content hr {
+    height: 1px;
+    width: 100%;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.164);
+}
+.posts {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    margin: 10px 0;
+}

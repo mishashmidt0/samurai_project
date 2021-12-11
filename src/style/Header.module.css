@@ -1,0 +1,27 @@
+.header {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+}
+.container {
+    width: 1000px;
+    margin: auto;
+    display: flex;
+}
+
+.container svg {
+    padding: 5px 20px;
+}
+.search {
+    margin: 10px;
+}
+.player {
+    display: flex;
+    margin: 0 5px;
+}
+.player button {
+    width: 15px;
+    height: 30px;
+    margin: 5px;
+}

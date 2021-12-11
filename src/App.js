@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Header from './components/Header';
 import Conteiner from './components/Conteiner';
@@ -6,7 +6,7 @@ import Conteiner from './components/Conteiner';
 
 function App() {
   return (
-    <div className="app-wrapper">
+    <div className="wrapper">
       <Header />
       <Conteiner />
     </div>

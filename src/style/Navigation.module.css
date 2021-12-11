@@ -1,0 +1,13 @@
+.nav {
+    margin: 10px;
+    color: rgb(0, 0, 0);
+}
+.nav ul li {
+    padding: 6px;
+}
+
+.nav ul hr {
+    background-color: rgb(0, 0, 0);
+    width: 100px;
+    height: 1px;
+}
