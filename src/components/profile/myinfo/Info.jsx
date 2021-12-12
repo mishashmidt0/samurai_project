@@ -1,11 +1,11 @@
 
 import s from './Info.module.css'
 
-function Info() {
+function Info(props) {
     return (
         <div className={s.profile}>
             <h2>Mikhail Shmidt</h2>
-            <p>status</p>
+            <p>{props.status}</p>
             <hr />
             <div className={s.info}>
                 <p>Languages: Russia</p>

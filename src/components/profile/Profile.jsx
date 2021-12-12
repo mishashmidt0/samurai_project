@@ -6,9 +6,11 @@ import Info from './myinfo/Info'
 function Profile() {
     return (
         <div className={s.content}>
-            <Info />
+            <Info status="I like a dog" />
             <CreatePost />
-            <Post />
+            <Post messages="Hello it's my first post" />
+            <Post messages="How are you?" />
+            <Post messages="I am play chess" />
         </div>
     )
 }
