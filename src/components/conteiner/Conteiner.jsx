@@ -1,8 +1,8 @@
 
-import Nav from './Navigation';
-import Photo from './Photo';
-import Profile from './Profile';
-import s from '../style/Conteiner.module.css'
+import Nav from '../navigation/Navigation';
+import Photo from '../photo/Photo';
+import Profile from '../profile/Profile';
+import s from './Conteiner.module.css'
 
 function Conteiner() {
     return (

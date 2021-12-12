@@ -1,4 +1,4 @@
-import s from '../style/Photo.module.css'
+import s from './Photo.module.css'
 
 function Photo() {
     return (

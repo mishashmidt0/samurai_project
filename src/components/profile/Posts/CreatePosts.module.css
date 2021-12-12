@@ -1,0 +1,27 @@
+.createPost {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+}
+.createPost textarea {
+    padding: 10px;
+    width: 500px;
+    height: 50px;
+    display: inline;
+}
+
+.createPost button {
+    width: 60px;
+    height: 30px;
+    background-color: rgba(169, 214, 212, 0.712);
+    margin: 2px;
+}
+.createPost img {
+    border-radius: 50%;
+    display: inline;
+    padding: 10px;
+}
+.createPost div {
+    display: inline;
+}

@@ -1,0 +1,20 @@
+.profile {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+.profile h2 {
+    font-size: 24px;
+    padding: 10px;
+}
+.profile p {
+    margin-top: 10px;
+    padding: 10px;
+}
+.profile hr {
+    height: 1px;
+    width: 100%;
+    margin: 10px 0;
+    background-color: rgba(0, 0, 0, 0.164);
+}
