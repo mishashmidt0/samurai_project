@@ -1,16 +1,31 @@
 
 import Nav from '../navigation/Navigation';
-import Photo from '../photo/Photo';
+
 import Profile from '../profile/Profile';
-import s from './Conteiner.module.css'
+import Messsages from '../messsages/Messsages';
+
+import NotFound from '../notfound/NotFound';
+
+import s from './Conteiner.module.css';
+import { Route, Routes } from 'react-router-dom';
+
 
 function Conteiner() {
     return (
         <div className={s.conteiner}>
             <Nav />
-            <Photo />
-            <Profile />
+            <div className={s.conteiner}>
+                <Routes>
+
+                    <Route path='/profile' element={<Profile />} />
+
+                    <Route path='/messages' element={<Messsages />} />
+                    <Route path='*' element={<NotFound />} />
+
+                </Routes>
+            </div>
         </div>
+
     )
 }
 
