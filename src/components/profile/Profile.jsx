@@ -15,7 +15,6 @@ function Profile() {
                 <Post messages="How are you?" />
                 <Post messages="I am play chess" />
             </div>
-
         </div>
     )
 }

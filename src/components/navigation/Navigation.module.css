@@ -11,3 +11,9 @@
     width: 100px;
     height: 1px;
 }
+.nav a {
+    color: black;
+}
+.active {
+    color: rgb(255, 0, 0);
+}

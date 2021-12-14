@@ -5,9 +5,9 @@ function Nav() {
     return (
         <nav className={s.nav}>
             <ul>
-                <li><Link to='/profile'>My profile</Link></li>
-                <li><Link to='/news'>News</Link></li>
-                <li><Link to='/messages'>Messenger</Link></li>
+                <li><Link to='/profile' activeClassName={s.active} >My profile</Link></li>
+                <li><Link to='/news' activeClassName={s.active}>News</Link></li>
+                <li><Link to='/messages' activeClassName={s.active}>Messenger</Link></li>
                 <li><Link to='/calls'>Calls</Link></li>
                 <li><Link to='/friends'>Friends</Link></li>
                 <li><Link to='/communities'>Communities</Link></li>
