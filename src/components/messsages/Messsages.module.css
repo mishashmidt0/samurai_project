@@ -1,0 +1,14 @@
+.messages {
+    width: 200px;
+    display: grid;
+    margin: 0;
+    grid-template-areas: 'h h' 'n c';
+}
+
+.dialog {
+    padding: 10px;
+}
+
+.message {
+    padding: 10px;
+}
