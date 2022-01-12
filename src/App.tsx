@@ -1,21 +1,24 @@
 import './App.css';
 import Header from './components/header/Header';
 import Conteiner from './components/conteiner/Conteiner';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-import Profile from "./components/profile/Profile";
-import NotFound from "./components/notfound/NotFound";
-import { Messages } from "./components/messsages/Messsages";
+import { forState } from "./redux/state";
 
 
-export function App () {
+export type forProps = {
+	state: forState;
+	addPost: ( post: string ) => void,
+	addMessage: ( message: string ) => void,
+}
+
+export function App ( props: forProps ) {
 	return (
-		<BrowserRouter>
-			<div className="wrapper">
-				<Header/>
-				<Conteiner/>
-			</div>
-		</BrowserRouter>
 
-	);
+		<div className="wrapper">
+			<Header/>
+			<Conteiner state={ props.state } addPost={ props.addPost } addMessage={props.addMessage}/>
+		</div>
+
+	)
+		;
 }

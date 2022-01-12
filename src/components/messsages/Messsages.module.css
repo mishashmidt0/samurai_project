@@ -1,14 +1,42 @@
 .messages {
-    width: 200px;
-    display: grid;
-    margin: 0;
-    grid-template-areas: 'h h' 'n c';
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 4px;
 }
 
 .dialog {
     padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    font-weight: bold;
+    width: 150px;
+    justify-content: space-evenly;
 }
 
 .message {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.button{
+    padding: 5px;
+    font-weight: bold;
+    font-size: medium;
+    background-color: rgba(140, 229, 219, 0.79);
+}
+.textarea{
+    margin: 5px;
+    border: solid black 1px;
 }

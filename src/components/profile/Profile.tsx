@@ -1,21 +1,25 @@
 import s from "./Profile.module.css"
-import { CreatePost } from './Posts/CreatePosts'
+import { CreatePost } from './CreatePosts/CreatePosts'
 import Info from './myinfo/Info'
-import Photo from '../photo/Photo';
+import Photo from './photo/Photo';
 import React from 'react';
-import { Post } from "./Posts/Post/Post";
+import { Post } from "./Post/Post";
+import {forPostData } from "../../redux/state";
 
 
-function Profile () {
+type forPropsProfile = {
+	profile: { postData: forPostData };
+	addPost: ( value: string ) => void;
+}
+
+function Profile ( props: forPropsProfile ) {
 	return (
 		<div className={ s.content }>
 			<Photo/>
 			<div>
 				<Info status="I like a dog"/>
-				<CreatePost/>
-				<Post messages="Hello it's my first post"/>
-				<Post messages="How are you?"/>
-				<Post messages="I am play chess"/>
+				<CreatePost addPost={props.addPost}/>
+				{ props.profile.postData.map ( ( p ) => <Post messages={ p.post } /> ) }
 			</div>
 		</div>
 	)
