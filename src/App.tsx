@@ -7,8 +7,10 @@ import { forState } from "./redux/state";
 
 export type forProps = {
 	state: forState;
-	addPost: ( post: string ) => void,
-	addMessage: ( message: string ) => void,
+	addPost: () => void,
+	addMessage: () => void,
+	changeProfileTextarea: ( change: string ) => void,
+	changeMessageArea: ( change: string ) => void,
 }
 
 export function App ( props: forProps ) {
@@ -16,7 +18,7 @@ export function App ( props: forProps ) {
 
 		<div className="wrapper">
 			<Header/>
-			<Conteiner state={ props.state } addPost={ props.addPost } addMessage={props.addMessage}/>
+			<Conteiner state={ props.state } addPost={ props.addPost } changeMessageArea={ props.changeMessageArea } addMessage={ props.addMessage } changeProfileTextarea={ props.changeProfileTextarea }/>
 		</div>
 
 	)

@@ -15,8 +15,8 @@ function Conteiner ( props: forProps ) {
 			<Nav/>
 			<div className={ s.conteiner }>
 				<Routes>
-					<Route path="/profile" element={ <Profile profile={ props.state.profile } addPost={props.addPost}/> }/>
-					<Route path="/messages/*" element={ <Messages messages={ props.state.messages } addMessage={props.addMessage}/> }/>
+					<Route path="/profile" element={ <Profile profile={ props.state.profile } addPost={ props.addPost } changeProfileTextarea={ props.changeProfileTextarea }/> }/>
+					<Route path="/messages/*" element={ <Messages changeMessageArea={ props.changeMessageArea } messages={ props.state.messages } addMessage={ props.addMessage }/> }/>
 					<Route path="*" element={ <NotFound/> }/>
 				</Routes>
 			</div>

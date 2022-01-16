@@ -1,22 +1,28 @@
+let renderLink = ():any => {
+	console.log ( '123' )
+}
+
+//type
 type forMessage = { id: number, message: string }
 type forMessagesData = Array<forMessage>;
+export type forPropsMessages = {
+	messageData: forMessagesData,
+	dailogsData: forDialogsData,
+	changeMessagesArea: string;
+
+}
 type forDialog = { id: number, name: string }
 type forDialogsData = Array<forDialog>;
 type forPost = { id: number, post: string }
 export type forPostData = Array<forPost>;
-export type forPropsMessages = {
-	messageData: forMessagesData,
-	dailogsData: forDialogsData
-
-}
 export type forState = {
 	profile: {
 		postData: forPostData
+		changeText: string
 	},
 	messages: forPropsMessages
 }
-
-
+//data
 export const stateForState: forState = {
 	profile: {
 		postData: [
@@ -27,6 +33,7 @@ export const stateForState: forState = {
 			{ id: 5, post: 'Good' },
 			{ id: 6, post: 'Good-bye' },
 		],
+		changeText: "it-incubator",
 	},
 	messages: {
 		messageData: [
@@ -45,22 +52,41 @@ export const stateForState: forState = {
 			{ id: 5, name: 'Lex' },
 			{ id: 6, name: 'Mila' },
 		],
+		changeMessagesArea: 'it-incubator',
 	},
-
-
 }
+//func
+export const addPost = () => {
 
-export const addPost = ( newPost: string ) => {
 	const post = {
 		id: 7,
-		post: newPost,
+		post: stateForState.profile.changeText,
 	}
-	stateForState.profile.postData.push ( post );
+	if ( post.post === '' ) return;
+	stateForState.profile.postData.unshift ( post );
+	stateForState.profile.changeText = '';
+	renderLink ()
 }
-export const addMessage = ( newMessage: string ) => {
+export const changeProfileTextarea = ( change: string ) => {
+	stateForState.profile.changeText = change;
+	renderLink ();
+}
+export const changeMessageArea = ( change: string ) => {
+	stateForState.messages.changeMessagesArea = change;
+	renderLink ();
+}
+export const addMessage = () => {
 	const message = {
 		id: 7,
-		message: newMessage,
+		message: stateForState.messages.changeMessagesArea,
 	}
+	if ( message.message === '' ) return;
 	stateForState.messages.messageData.push ( message );
+	stateForState.messages.changeMessagesArea = '';
+	renderLink ();
 }
+//observe
+export const rerenderLink = ( observe: () => void ) => {
+	renderLink = observe;
+}
+

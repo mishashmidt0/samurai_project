@@ -7,16 +7,22 @@ import { forPropsMessages } from '../../redux/state';
 
 type forMessages = {
 	messages: forPropsMessages,
-	addMessage: ( value: string ) => void
+	addMessage: () => void,
+	changeMessageArea: ( change: string ) => void,
 }
 
 export function Messages ( props: forMessages ) {
 
 	const newMessageElement: any = React.createRef ();
+
 	const aadMessage = () => {
-		const text = newMessageElement.current.value;
-		props.addMessage ( text )
+		props.addMessage ();
 	}
+	const changeMessageArea = () => {
+		const text = newMessageElement.current.value;
+		props.changeMessageArea ( text )
+	}
+
 
 	return (
 		<div className={ s.messages }>
@@ -25,7 +31,7 @@ export function Messages ( props: forMessages ) {
 			</div>
 			<div className={ s.message }>
 				{ props.messages.messageData.map ( ( m ) => <Message message={ m.message }/> ) }
-				<textarea className={ s.textarea } ref={ newMessageElement } name="Posts" id="Posts" cols={ 45 } rows={ 3 }/>
+				<textarea className={ s.textarea } value={props.messages.changeMessagesArea} onChange={ changeMessageArea } ref={ newMessageElement } name="Posts" id="Posts" cols={ 45 } rows={ 3 }/>
 				<div>
 					<button className={ s.button } onClick={ aadMessage }>Create</button>
 				</div>
