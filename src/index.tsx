@@ -1,24 +1,23 @@
 import React from 'react';
-import { rerenderLink, stateForState } from "./redux/state";
+import { forState, store } from "./redux/state";
 import ReactDOM from 'react-dom';
 import { App } from './App';
-import { addMessage, addPost, changeMessageArea, changeProfileTextarea } from './redux/state'
 import { BrowserRouter } from "react-router-dom";
 
 
-export const renderLink = () => {
+export const renderLink = ( state: forState ) => {
 	ReactDOM.render (
 		<BrowserRouter>
-			<App state={ stateForState } addPost={ addPost }
-			     addMessage={ addMessage }
-			     changeProfileTextarea={ changeProfileTextarea }
-			     changeMessageArea={ changeMessageArea }
-			/>
+			<App state={ state }
+			     addPost={ store.addPost.bind ( store ) }
+			     changeMessageArea={ store.changeMessageArea.bind(store) }
+			     addMessage={ store.addMessage.bind(store) }
+			     changeProfileTextarea={ store.changeProfileTextarea.bind(store) }/>
 		</BrowserRouter>
 		, document.getElementById ( 'root' ),
 	);
 }
+renderLink ( store.getState () )
 
-rerenderLink ( renderLink )
-renderLink ()
+store.subscribe ( renderLink )
 

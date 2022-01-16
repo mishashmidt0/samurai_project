@@ -18,7 +18,11 @@ export function App ( props: forProps ) {
 
 		<div className="wrapper">
 			<Header/>
-			<Conteiner state={ props.state } addPost={ props.addPost } changeMessageArea={ props.changeMessageArea } addMessage={ props.addMessage } changeProfileTextarea={ props.changeProfileTextarea }/>
+			<Conteiner state={ props.state }
+			           addPost={ props.addPost }
+			           changeMessageArea={ props.changeMessageArea }
+			           addMessage={ props.addMessage }
+			           changeProfileTextarea={ props.changeProfileTextarea }/>
 		</div>
 
 	)
