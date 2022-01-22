@@ -1,31 +1,28 @@
 import s from './CreatePosts.module.css';
 
-import React from 'react';
-import { forPostData } from "../../../redux/state";
+import React, { ChangeEvent } from 'react';
+import { forAction, forState } from "../../../redux/state";
 
 
 type forCreatePost = {
-	addPost: () => void
-	changeTextarea: ( change: string ) => void
-	statePeofile: { postData: forPostData, changeText: string };
+	state: forState;
+	dispatch: ( action: forAction ) => void;
 }
 
 export function CreatePost ( props: forCreatePost ) {
 
-	const newPostElement: any = React.createRef ();
-
 	const aadPost = (): void => {
-		props.addPost ( );
+		props.dispatch ( { type: 'ADD-POST' } );
 	}
-	const changeText = (): void => {
-		const change = newPostElement.current.value;
-		props.changeTextarea ( change )
+	const changeText = ( e: ChangeEvent<HTMLTextAreaElement> ): void => {
+		console.log ( e.currentTarget.value )
+		props.dispatch ( { type: 'CHANGE-PROFILE', chengeProfileTextArea: e.currentTarget.value } )
 	}
 
 	return (
 		<section className={ s.createPost }>
 			<img src="https://vk.com/images/camera_200.png" alt="logo" width={ 30 } height={ 30 }/>
-			<textarea onChange={ changeText } value={ props.statePeofile.changeText } ref={ newPostElement } name="Posts" id="Posts" cols={ 30 } rows={ 10 } placeholder="  What`s new?"/>
+			<textarea onChange={ changeText } value={ props.state.profile.changeText } name="Posts" id="Posts" cols={ 30 } rows={ 10 } placeholder="  What`s new?"/>
 			<div>
 				<button onClick={ aadPost }>Create</button>
 				<button>Remove</button>

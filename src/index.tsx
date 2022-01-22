@@ -9,14 +9,12 @@ export const renderLink = ( state: forState ) => {
 	ReactDOM.render (
 		<BrowserRouter>
 			<App state={ state }
-			     addPost={ store.addPost.bind ( store ) }
-			     changeMessageArea={ store.changeMessageArea.bind(store) }
-			     addMessage={ store.addMessage.bind(store) }
-			     changeProfileTextarea={ store.changeProfileTextarea.bind(store) }/>
+			     dispatch ={ store.dispatch.bind ( store ) }/>
 		</BrowserRouter>
 		, document.getElementById ( 'root' ),
 	);
 }
+
 renderLink ( store.getState () )
 
 store.subscribe ( renderLink )
