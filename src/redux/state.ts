@@ -107,7 +107,7 @@ export const store: forStore = {
 		this._callSubscriber = observe;
 	},
 
-	dispatch ( action ) {
+	dispatch ( action  ) {
 
 		switch ( action.type ) {
 			case 'ADD-POST':
