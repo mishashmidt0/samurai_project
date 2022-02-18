@@ -7,12 +7,11 @@ import { forAction, forState } from "./redux/state";
 
 export type forProps = {
 	state: forState;
-	dispatch: ( action: forAction) => void;
+	dispatch: ( action: forAction ) => void;
 }
 
-export function App ( props: forProps ) {
-	return (
-		<div className="wrapper">
+export function App ( props: forProps ){
+	return ( <div className="wrapper">
 			<Header/>
 			<Conteiner state={ props.state }
 			           dispatch={ props.dispatch }/>
