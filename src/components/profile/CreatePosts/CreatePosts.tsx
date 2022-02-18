@@ -1,7 +1,7 @@
 import s from './CreatePosts.module.css';
 
 import React, { ChangeEvent } from 'react';
-import { forAction, forState } from "../../../redux/state";
+import { forAction, forState } from "../../../redux/Store";
 
 
 type forCreatePost = {
@@ -15,7 +15,6 @@ export function CreatePost ( props: forCreatePost ) {
 		props.dispatch ( { type: 'ADD-POST' } );
 	}
 	const changeText = ( e: ChangeEvent<HTMLTextAreaElement> ): void => {
-		console.log ( e.currentTarget.value )
 		props.dispatch ( { type: 'CHANGE-PROFILE', chengeProfileTextArea: e.currentTarget.value } )
 	}
 

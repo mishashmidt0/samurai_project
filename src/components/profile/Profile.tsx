@@ -4,7 +4,7 @@ import Info from './myinfo/Info'
 import Photo from './photo/Photo';
 import React from 'react';
 import { Post } from "./Post/Post";
-import { forAction, forState } from "../../redux/state";
+import { forAction, forState } from "../../redux/Store";
 
 
 type forPropsProfile = {

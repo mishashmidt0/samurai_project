@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 import s from './Messsages.module.css'
 import { Dialog } from "./dialog/dialog";
 import { Message } from "./message/message";
-import { forAction, forState } from '../../redux/state';
+import { forAction, forState } from '../../redux/Store';
 
 
 type forMessages = {
