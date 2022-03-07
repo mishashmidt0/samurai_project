@@ -25,7 +25,7 @@ export const dialogReducer = (state: forPropsMessages = initialState, action: fo
     switch (action.type) {
         case forActionType['ADD_MESSAGE']:
             const message = {id: v1(), message: state.changeMessagesArea,};
-            if (message.message.trim() === '') return;
+            if (message.message.trim() === '') return state;
             state.messageData.push(message);
             state.changeMessagesArea = '';
             return state

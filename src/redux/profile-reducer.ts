@@ -24,7 +24,7 @@ export const profileReducer = (state: {
             const post = {
                 id: v1(), post: state.changeText,
             };
-            if (post.post.trim() === '') return;
+            if (post.post.trim() === '') return state;
             state.postData.unshift(post);
             state.changeText = '';
             return state
