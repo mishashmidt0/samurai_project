@@ -3,26 +3,36 @@ import Profile from '../profile/Profile';
 import NotFound from '../notfound/NotFound';
 
 import s from './Conteiner.module.css';
-import { Route, Routes } from 'react-router-dom';
-import { Messages } from "../messsages/Messsages";
+import {Route, Routes} from 'react-router-dom';
 import React from 'react';
-import { forProps } from "../../App";
+import {forProps} from "../../App";
+import {DialogsContainer} from "../messsages/DialogsContainer";
 
 
-function Conteiner ( props: forProps ) {
-	return (
-		<div className={ s.conteiner }>
-			<Nav/>
-			<div className={ s.conteiner }>
-				<Routes>
-					<Route path="/profile" element={ <Profile dispatch={ props.dispatch } state={ props.state }/> }/>
-					<Route path="/messages/*" element={ <Messages dispatch={ props.dispatch } state={ props.state }/> }/>
-					<Route path="*" element={ <NotFound/> }/>
-				</Routes>
-			</div>
-		</div>
+function Conteiner(props: forProps) {
+    return (
+        <div className={s.conteiner}>
+            <Nav/>
+            <div className={s.conteiner}>
+                <Routes>
+                    <Route path="/profile" element={
+                        <Profile
+                            // dispatch={props.dispatch}
+                            // state={props.state}
+                        />}/>
 
-	)
+                    <Route path="/messages/*" element={
+                        <DialogsContainer
+                            // dispatch={props.dispatch}
+                            // state={props.state}
+                        />
+                    }/>
+                    <Route path="*" element={<NotFound/>}/>
+                </Routes>
+            </div>
+        </div>
+
+    )
 }
 
 export default Conteiner;

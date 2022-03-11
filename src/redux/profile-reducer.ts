@@ -1,7 +1,11 @@
 import {forAction, forActionType, forPostData} from "./Store";
 import {v1} from "uuid";
 
-let initialState = {
+type ProfileReducerPropsStateType = {
+    postData: forPostData
+    changeText: string
+}
+let initialState: ProfileReducerPropsStateType = {
     postData: [
         {id: v1(), post: "Hello it's my first post",},
         {id: v1(), post: "How are you?"},
@@ -13,10 +17,7 @@ let initialState = {
     changeText: "it-incubator",
 }
 
-export const profileReducer = (state: {
-    postData: forPostData
-    changeText: string
-} = initialState, action: forAction) => {
+export const profileReducer = (state: ProfileReducerPropsStateType = initialState, action: forAction) => {
 
     switch (action.type) {
 
@@ -25,12 +26,13 @@ export const profileReducer = (state: {
                 id: v1(), post: state.changeText,
             };
             if (post.post.trim() === '') return state;
-            state.postData.unshift(post);
-            state.changeText = '';
-            return state
+            return {
+                ...state,
+                postData: [post, ...state.postData],
+                changeText: '',
+            }
         case forActionType['CHANGE_PROFILE']:
-            state.changeText = action.chengeProfileTextArea as string;
-            return state
+            return {...state, changeText: action.chengeProfileTextArea as string}
 
         default:
             return state

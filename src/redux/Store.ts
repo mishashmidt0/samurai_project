@@ -14,20 +14,23 @@ export enum forActionType {
 
 //type
 type forMessage = { id: string, message: string }
-type forMessagesData = Array<forMessage>;
+export type forMessagesData = Array<forMessage>;
 export type forPropsMessages = {
-    messageData: forMessagesData, dailogsData: forDialogsData, changeMessagesArea: string;
+    messageData: forMessagesData,
+    dailogsData: forDialogsData,
+    changeMessagesArea: string;
 
 }
 type forDialog = { id: string, name: string, avatar: number }
-type forDialogsData = Array<forDialog>;
+export type forDialogsData = Array<forDialog>;
 type forPost = { id: string, post: string }
 export type forPostData = Array<forPost>;
 export type forState = {
     profile: {
         postData: forPostData
         changeText: string
-    }, messages: forPropsMessages
+    },
+    messages: forPropsMessages
 }
 export type forAction = {
     type: string;

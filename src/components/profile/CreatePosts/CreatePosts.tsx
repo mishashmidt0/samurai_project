@@ -1,33 +1,35 @@
 import s from './CreatePosts.module.css';
-
-import React, { ChangeEvent } from 'react';
-import { forAction, forState } from "../../../redux/Store";
+import React, {ChangeEvent} from 'react';
+import {Post} from "../Post/Post";
+import {forPostData} from "../../../redux/Store";
 
 
 type forCreatePost = {
-	state: forState;
-	dispatch: ( action: forAction ) => void;
+    updateNewPostText: (text: string) => void
+    onAddPost: () => void
+    changeText: string
+    postData: forPostData
 }
 
-export function CreatePost ( props: forCreatePost ) {
+export function CreatePost(props: forCreatePost) {
 
-	const aadPost = (): void => {
-		props.dispatch ( { type: 'ADD-POST' } );
-	}
-	const changeText = ( e: ChangeEvent<HTMLTextAreaElement> ): void => {
-		props.dispatch ( { type: 'CHANGE-PROFILE', chengeProfileTextArea: e.currentTarget.value } )
-	}
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+        let text = e.currentTarget.value
+        props.updateNewPostText(text)
+        // props.dispatch({type: 'CHANGE-PROFILE', chengeProfileTextArea: e.currentTarget.value})
+    }
+    return (
+        <section className={s.createPost}>
+            <img src="https://vk.com/images/camera_200.png" alt="logo" width={30} height={30}/>
+            <textarea onChange={onPostChange} value={props.changeText} name="Posts" id="Posts" cols={30} rows={10} placeholder="  What`s new?"/>
 
-	return (
-		<section className={ s.createPost }>
-			<img src="https://vk.com/images/camera_200.png" alt="logo" width={ 30 } height={ 30 }/>
-			<textarea onChange={ changeText } value={ props.state.profile.changeText } name="Posts" id="Posts" cols={ 30 } rows={ 10 } placeholder="  What`s new?"/>
-			<div>
-				<button onClick={ aadPost }>Create</button>
-				<button>Remove</button>
-			</div>
+            <div>
+                <button onClick={() => props.onAddPost()}>Create</button>
+                <button>Remove</button>
+            </div>
 
-		</section>
-	)
+            {props.postData.map((p) => <Post messages={p.post} key={p.id}/>)}
+        </section>
+    )
 }
 

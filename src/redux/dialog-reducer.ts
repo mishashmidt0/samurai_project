@@ -1,7 +1,12 @@
-import {forAction, forActionType, forPropsMessages} from "./Store";
+import {forAction, forActionType, forDialogsData, forMessagesData, forPropsMessages} from "./Store";
 import {v1} from "uuid";
 
-let initialState = {
+export type initialStateForDialog = {
+    messageData: forMessagesData
+    dailogsData: forDialogsData
+    changeMessagesArea: string
+}
+let initialState: initialStateForDialog = {
     messageData: [
         {id: v1(), message: 'Hi'},
         {id: v1(), message: 'Where are you?'},
@@ -26,12 +31,13 @@ export const dialogReducer = (state: forPropsMessages = initialState, action: fo
         case forActionType['ADD_MESSAGE']:
             const message = {id: v1(), message: state.changeMessagesArea,};
             if (message.message.trim() === '') return state;
-            state.messageData.push(message);
-            state.changeMessagesArea = '';
-            return state
+            return {
+                ...state,
+                messageData: [...state.messageData, message],
+                changeMessagesArea: '',
+            }
         case forActionType['CHANGE_MESSAGE']:
-            state.changeMessagesArea = action.chengeMessageTextArea as string;
-            return state
+            return {...state, changeMessagesArea: action.chengeMessageTextArea as string}
         default:
             return state
     }

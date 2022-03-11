@@ -1,29 +1,29 @@
 import s from "./Profile.module.css"
-import { CreatePost } from './CreatePosts/CreatePosts'
 import Info from './myinfo/Info'
 import Photo from './photo/Photo';
 import React from 'react';
-import { Post } from "./Post/Post";
-import { forAction, forState } from "../../redux/Store";
+import {SuperCreatePostContainer} from "./CreatePosts/CreatePostsContainer";
 
 
 type forPropsProfile = {
-	state: forState;
-	dispatch: ( action: forAction ) => void
+    // state: forState;
+    // dispatch: (action: forAction) => void
 }
 
-function Profile ( props: forPropsProfile ) {
-
-	return (
-		<div className={ s.content }>
-			<Photo/>
-			<div>
-				<Info status="I like a dog"/>
-				<CreatePost state={ props.state } dispatch={ props.dispatch }/>
-				{ props.state.profile.postData.map ( ( p ) => <Post messages={ p.post }/> ) }
-			</div>
-		</div>
-	)
+function Profile(props: forPropsProfile) {
+    return (
+        <div className={s.content}>
+            <Photo/>
+            <div>
+                <Info myName={"Misha Shmidt"} status="I like a dog" languages={"Russian"}/>
+                <SuperCreatePostContainer
+                    // changeText={props.state.profile.changeText}
+                    // dispatch={props.dispatch}
+                />
+                {/*{props.state.profile.postData.map((p) => <Post messages={p.post}/>)}*/}
+            </div>
+        </div>
+    )
 }
 
 export default Profile;
