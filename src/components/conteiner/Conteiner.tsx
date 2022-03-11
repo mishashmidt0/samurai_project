@@ -7,6 +7,7 @@ import {Route, Routes} from 'react-router-dom';
 import React from 'react';
 import {forProps} from "../../App";
 import {DialogsContainer} from "../messsages/DialogsContainer";
+import {UsersContainer} from "../users/usersContainer";
 
 
 function Conteiner(props: forProps) {
@@ -26,6 +27,9 @@ function Conteiner(props: forProps) {
                             // dispatch={props.dispatch}
                             // state={props.state}
                         />
+                    }/>
+                    <Route path="/users" element={
+                        <UsersContainer/>
                     }/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
