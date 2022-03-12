@@ -1,87 +1,55 @@
-import {v1} from "uuid";
-
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UN-FOLLOW';
-export const setUsers = 'SET-USERS'
+export const addUsers = 'SET-USERS'
 
 type actionType = {
     type: string
-    userId?: string
-    users?: Array<usersType>
+    id?: number
+    users?: usersType[]
 }
 export type usersType = {
-    id: string,
-    follow: boolean,
-    firstName: string,
-    lastName: string,
-    country: string,
-    city: string,
-    status: string,
-    img: string
+    id: number,
+    followed: boolean,
+    name: string,
+    photos: {
+        small: string | null,
+        large: string | null
+    },
+    status: string | null,
+    uniqueUrlName: string | null,
 }
 export type usersReducerPropsType = {
     users: Array<usersType>
 }
+
 let initialState: usersReducerPropsType = {
-    users: [
-        {
-            id: v1(),
-            follow: true,
-            firstName: 'Masha',
-            lastName: "Orlova",
-            country: 'Russia',
-            city: 'Moscow',
-            status: 'Good day',
-            img: 'https://sun7-6.userapi.com/s/v1/if1/6jwBUpZUKs1Dghreq8mnTD1UOMYdfUrexedo_6isD6tIMQblu8p_UC1APt5Tl8x6GGPIjqQf.jpg?size=200x200&quality=96&crop=114,37,552,552&ava=1'
-        },
-        {
-            id: v1(),
-            follow: false,
-            firstName: 'Masha',
-            lastName: "Orlova",
-            country: 'Russia',
-            city: 'Moscow',
-            status: 'Good day',
-            img: 'https://sun7-6.userapi.com/s/v1/if1/6jwBUpZUKs1Dghreq8mnTD1UOMYdfUrexedo_6isD6tIMQblu8p_UC1APt5Tl8x6GGPIjqQf.jpg?size=200x200&quality=96&crop=114,37,552,552&ava=1'
-        },
-        {
-            id: v1(),
-            follow: true,
-            firstName: 'Masha',
-            lastName: "Orlova",
-            country: 'Russia',
-            city: 'Moscow',
-            status: 'Good day',
-            img: 'https://sun7-6.userapi.com/s/v1/if1/6jwBUpZUKs1Dghreq8mnTD1UOMYdfUrexedo_6isD6tIMQblu8p_UC1APt5Tl8x6GGPIjqQf.jpg?size=200x200&quality=96&crop=114,37,552,552&ava=1'
-        },
-    ],
+    users: [],
 }
 
 export const ussersReducer = (state: usersReducerPropsType = initialState, action: actionType) => {
     switch (action.type) {
-
         case FOLLOW:
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        u.follow = true
-                        return u
+                    if (u.id === action.id) {
+                        return {...u, followed: true}
                     }
+                    return u
                 })
             }
         case UNFOLLOW:
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        u.follow = false
-                        return u
+                    if (u.id === action.id) {
+                        return {...u, followed: false}
                     }
+                    return u
                 })
             }
-        case setUsers:
-            return {...state, ...action.users}
+        case addUsers:
+            return {...state, users: [...state.users, ...action.users as usersType[]]}
         default:
             return state
     }
@@ -97,5 +65,11 @@ export const unFollow = (userId: string) => {
     return {
         type: UNFOLLOW,
         userId
+    }
+}
+export const setUsers = (users: usersType) => {
+    return {
+        type: addUsers,
+        users
     }
 }
