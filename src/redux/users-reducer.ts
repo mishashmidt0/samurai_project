@@ -14,12 +14,17 @@ type currentPageType = {
     type: 'CHANGE-CURRENT-PAGE',
     currentPage: number
 }
+type totalUsersCountType = {
+    type: 'CHANGE-TOTAL-UC',
+    totalUsersCount: number
+}
 
-export type actionType = followType | setUsersType | unfollowType | currentPageType;
+export type actionType = followType | setUsersType | unfollowType | currentPageType | totalUsersCountType;
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const addUsers = 'ADD-USERS'
 export const changeCurrentPage = 'CHANGE-CURRENT-PAGE'
+export const changeTotalUsersCount = 'CHANGE-TOTAL-UC'
 
 export type usersType = {
     id: number,
@@ -35,15 +40,15 @@ export type usersType = {
 export type usersReducerPropsType = {
     users: Array<usersType>
     pageSize: number
-    totalUserCount: number
     currentPage: number
+    setTotalUsersCount: number
 }
 
 let initialState: usersReducerPropsType = {
     users: [],
-    pageSize: 5,
+    pageSize: 20,
     currentPage: 1,
-    totalUserCount: 20, //общее количество пользователей
+    setTotalUsersCount: 0//общее количество пользователей
 }
 
 export const ussersReducer = (state: usersReducerPropsType = initialState, action: actionType) => {
@@ -72,6 +77,8 @@ export const ussersReducer = (state: usersReducerPropsType = initialState, actio
             return {...state, users: action.users}
         case changeCurrentPage:
             return {...state, currentPage: action.currentPage}
+        case changeTotalUsersCount:
+            return {...state, setTotalUsersCount: action.totalUsersCount}
         default:
             return state
     }
@@ -79,27 +86,33 @@ export const ussersReducer = (state: usersReducerPropsType = initialState, actio
 }
 
 // применяеться в userContainer
-export const follow = (userId: number): followType => {
+export const followAC = (userId: number): followType => {
     return {
         type: FOLLOW,
         userId
     }
 }
-export const unFollow = (userId: number): unfollowType => {
+export const unFollowAC = (userId: number): unfollowType => {
     return {
         type: UNFOLLOW,
         userId
     }
 }
-export const setUsers = (users: usersType[]): setUsersType => {
+export const setUsersAC = (users: usersType[]): setUsersType => {
     return {
         type: addUsers,
         users
     }
 }
-export const currentPage = (newCurrentPage: number): currentPageType => {
+export const currentPageAC = (newCurrentPage: number): currentPageType => {
     return {
         type: changeCurrentPage,
         currentPage: newCurrentPage
+    }
+}
+export const setTotalUsersCountAC = (totalUsersCount: number): totalUsersCountType => {
+    return {
+        type: changeTotalUsersCount,
+        totalUsersCount
     }
 }
