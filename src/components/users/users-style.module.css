@@ -1,0 +1,13 @@
+
+.pages {
+    font-size: 26px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.active_page {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 5px;
+    cursor: pointer;
+}

@@ -1,40 +1,32 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {Users} from "./users";
-import {addUsers, FOLLOW, UNFOLLOW, usersType} from "../../redux/users-reducer";
-import {AppStateType} from "../../redux/redux-store";
 
-type actionType = {
-    type: string,
-    id?: number,
-    users?: usersType
-}
+import {actionType, currentPage, follow, setUsers, unFollow, usersType} from "../../redux/users-reducer";
+import {AppStateType} from "../../redux/redux-store";
+import {Users} from "./users";
 
 
 let mapStateToProps = (state: AppStateType) => {
     return {
-        users: state.ussersReducer.users
+        users: state.usersReducer.users,
+        pageSize: state.usersReducer.pageSize,
+        totalUserCount: state.usersReducer.totalUserCount,
+        currentPage: state.usersReducer.currentPage,
     }
 }
 let mapDispatchToProps = (dispatch: (action: actionType) => void) => {
     return {
-        follow: (id: number) => {
-            dispatch({
-                type: FOLLOW,
-                id: id
-            });
+        follow: (userId: number) => {
+            dispatch(follow(userId))
         },
-        setUsers: (users: usersType) => {
-            dispatch({
-                type: addUsers,
-                users: users
-            });
+        setUsers: (users: usersType[]) => {
+            dispatch(setUsers(users));
         },
         unfollow: (id: number) => {
-            dispatch({
-                type: UNFOLLOW,
-                id: id
-            })
+            dispatch(unFollow(id))
+        },
+        changeCurrentPage: (newCurrentPage: number) => {
+            dispatch(currentPage(newCurrentPage))
         }
     }
 }
