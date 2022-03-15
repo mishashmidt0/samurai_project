@@ -18,13 +18,18 @@ type totalUsersCountType = {
     type: 'CHANGE-TOTAL-UC',
     totalUsersCount: number
 }
+type isFetchingChangeType = {
+    type: 'CHANGE-ISFETCHING',
+    isFetching: boolean
+}
 
-export type actionType = followType | setUsersType | unfollowType | currentPageType | totalUsersCountType;
+export type actionType = followType | setUsersType | unfollowType | currentPageType | totalUsersCountType | isFetchingChangeType;
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const addUsers = 'ADD-USERS'
 export const changeCurrentPage = 'CHANGE-CURRENT-PAGE'
 export const changeTotalUsersCount = 'CHANGE-TOTAL-UC'
+export const isFetchingChange = 'CHANGE-ISFETCHING'
 
 export type usersType = {
     id: number,
@@ -42,13 +47,15 @@ export type usersReducerPropsType = {
     pageSize: number
     currentPage: number
     setTotalUsersCount: number
+    isFetching: boolean
 }
 
 let initialState: usersReducerPropsType = {
     users: [],
     pageSize: 20,
     currentPage: 1,
-    setTotalUsersCount: 0//общее количество пользователей
+    setTotalUsersCount: 0,//общее количество пользователей
+    isFetching: true,
 }
 
 export const ussersReducer = (state: usersReducerPropsType = initialState, action: actionType) => {
@@ -79,6 +86,8 @@ export const ussersReducer = (state: usersReducerPropsType = initialState, actio
             return {...state, currentPage: action.currentPage}
         case changeTotalUsersCount:
             return {...state, setTotalUsersCount: action.totalUsersCount}
+        case isFetchingChange:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -114,5 +123,11 @@ export const setTotalUsersCountAC = (totalUsersCount: number): totalUsersCountTy
     return {
         type: changeTotalUsersCount,
         totalUsersCount
+    }
+}
+export const changeIsFetchingAC = (isFetching: boolean): isFetchingChangeType => {
+    return {
+        type: isFetchingChange,
+        isFetching
     }
 }
