@@ -3,11 +3,12 @@ import s from './Messsages.module.css'
 import {Dialog} from "./dialog/dialog";
 import {Message} from "./message/message";
 import {forDialogsData, forMessagesData} from "../../redux/Store";
+import {changeMessage} from "../../redux/dialog-reducer";
 
 
 type typeForMessages = {
     addMessage: () => void;
-    changeMessageArea: (text: string) => void;
+    changeMessage: (text: string) => void;
     dailogsData: forDialogsData;
     messageData: forMessagesData
     changeMessagesAreaStart: string
@@ -23,7 +24,7 @@ export function Dialogs(props: typeForMessages) {
                 {props.messageData.map((m) => <Message message={m.message} key={m.id}/>)}
                 <textarea className={s.textarea}
                           value={props.changeMessagesAreaStart}
-                          onChange={(e) => props.changeMessageArea(e.currentTarget.value)} name="Posts" id="Posts" cols={45} rows={3}/>
+                          onChange={(e) => props.changeMessage(e.currentTarget.value)} name="Posts" id="Posts" cols={45} rows={3}/>
                 <div>
                     <button className={s.button} onClick={props.addMessage}>Create</button>
                 </div>

@@ -5,8 +5,8 @@ import {forPostData} from "../../../redux/Store";
 
 
 type forCreatePost = {
-    updateNewPostText: (text: string) => void
-    onAddPost: () => void
+    chengeMessageTextArea: (text: string) => void
+    addPost: (text: string) => void
     changeText: string
     postData: forPostData
 }
@@ -15,7 +15,7 @@ export function CreatePost(props: forCreatePost) {
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
         let text = e.currentTarget.value
-        props.updateNewPostText(text)
+        props.chengeMessageTextArea(text)
         // props.dispatch({type: 'CHANGE-PROFILE', chengeProfileTextArea: e.currentTarget.value})
     }
     return (
@@ -24,7 +24,7 @@ export function CreatePost(props: forCreatePost) {
             <textarea onChange={onPostChange} value={props.changeText} name="Posts" id="Posts" cols={30} rows={10} placeholder="  What`s new?"/>
 
             <div>
-                <button onClick={() => props.onAddPost()}>Create</button>
+                <button onClick={() => props.addPost(props.changeText)}>Create</button>
                 <button>Remove</button>
             </div>
 

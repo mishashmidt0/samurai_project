@@ -1,5 +1,6 @@
-import {forAction, forActionType, forDialogsData, forMessagesData, forPropsMessages} from "./Store";
+import {forActionType, forDialogsData, forMessagesData, forPropsMessages} from "./Store";
 import {v1} from "uuid";
+
 
 export type initialStateForDialog = {
     messageData: forMessagesData
@@ -25,6 +26,17 @@ let initialState: initialStateForDialog = {
     ],
     changeMessagesArea: '',
 }
+
+type addMessage = {
+    type: 'ADD-MESSAGE',
+}
+type changeMessage = {
+    type: 'CHANGE-MESSAGE',
+    chengeMessageTextArea: string
+}
+
+export type forAction = addMessage | changeMessage
+
 export const dialogReducer = (state: forPropsMessages = initialState, action: forAction) => {
 
     switch (action.type) {
@@ -42,4 +54,17 @@ export const dialogReducer = (state: forPropsMessages = initialState, action: fo
             return state
     }
 
+}
+
+export const addMessage = (): addMessage => {
+    return {
+        type: 'ADD-MESSAGE',
+
+    }
+}
+export const changeMessage = (chengeMessageTextArea: string): changeMessage => {
+    return {
+        type: 'CHANGE-MESSAGE',
+        chengeMessageTextArea
+    }
 }

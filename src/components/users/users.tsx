@@ -3,11 +3,12 @@ import {usersType} from "../../redux/users-reducer";
 import avatar from '../../assets/images/avatar.jpg'
 import s from './users-style.module.css'
 import {v1} from "uuid";
+import {NavLink} from "react-router-dom";
 
 type usersPropsType = {
     users: Array<usersType>,
     follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    unFollow: (userId: number) => void
     // setUsers: (users: usersType[]) => void
     // changeCurrentPage: (newCurrentPage: number) => void
     pageSize: number
@@ -32,9 +33,13 @@ export function Users(props: usersPropsType) {
                 props.users.map(u => {
                     return (
                         <div key={u.id}>
-                            <img src={u.photos.small ? u.photos.small : avatar} alt="avatar" height={100}/>
 
-                            {u.followed ? <button onClick={() => props.unfollow(u.id)}>Follow</button> :
+                            <NavLink  to={`../profile/${u.id}`}>
+                                <img src={u.photos.small ? u.photos.small : avatar} alt="avatar" height={100}/>
+                            </NavLink>
+
+
+                            {u.followed ? <button onClick={() => props.unFollow(u.id)}>Follow</button> :
 
                                 <button onClick={() => props.follow(u.id)}>Unfollow</button>}
 

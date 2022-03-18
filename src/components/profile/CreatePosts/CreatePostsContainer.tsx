@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {forAction} from "../../../redux/Store";
 import {CreatePost} from "./CreatePosts";
 import {AppStateType} from "../../../redux/redux-store";
+import {addPost, chengeMessageTextArea} from "../../../redux/profile-reducer";
 
 
 // type forCreatePost = {
@@ -32,19 +32,23 @@ let mapStateToProps = (state: AppStateType) => {
         postData: state.profileReducer.postData
     }
 }
-let mapDispatchToProps = (dispatch: (action: forAction) => void) => {
-    return {
-        onAddPost: () => {
-            dispatch({type: 'ADD-POST'});
-        },
-        updateNewPostText: (text: string) => {
-            dispatch({
-                type: 'CHANGE-PROFILE',
-                chengeProfileTextArea: text
-            })
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch: (action: forAction) => void) => {
+//     return {
+//         onAddPost: () => {
+//             dispatch({type: 'ADD-POST'});
+//         },
+//         updateNewPostText: (text: string) => {
+//             dispatch({
+//                 type: 'CHANGE-PROFILE',
+//                 chengeProfileTextArea: text
+//             })
+//         }
+//     }
+// }
 
 export const SuperCreatePostContainer =
-    connect(mapStateToProps, mapDispatchToProps)(CreatePost)
+    connect(mapStateToProps, {
+            addPost,
+            chengeMessageTextArea
+        }
+    )(CreatePost)

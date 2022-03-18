@@ -3,14 +3,17 @@ import Info from './myinfo/Info'
 import Photo from './photo/Photo';
 import React from 'react';
 import {SuperCreatePostContainer} from "./CreatePosts/CreatePostsContainer";
+import {profileType} from "../../redux/profile-reducer";
+
 
 
 type forPropsProfile = {
-    // state: forState;
-    // dispatch: (action: forAction) => void
+    profile: profileType
+    setUserProfile: (data: profileType) => void
 }
 
 function Profile(props: forPropsProfile) {
+    console.log(props)
     return (
         <div className={s.content}>
             <Photo/>

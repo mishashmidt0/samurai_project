@@ -8,6 +8,7 @@ import React from 'react';
 import {forProps} from "../../App";
 import {DialogsContainer} from "../messsages/DialogsContainer";
 import {UsersContainer} from "../users/usersContainer";
+import ProfileContainer from "../profile/ProfileContainer";
 
 
 function Conteiner(props: forProps) {
@@ -16,11 +17,13 @@ function Conteiner(props: forProps) {
             <Nav/>
             <div className={s.conteiner}>
                 <Routes>
-                    <Route path="/profile" element={
-                        <Profile
-                            // dispatch={props.dispatch}
-                            // state={props.state}
-                        />}/>
+                    <Route path="/profile/*" element={
+                        <ProfileContainer/>
+                    }/>
+                    {/*// <Profile*/}
+                    {/*    // dispatch={props.dispatch}*/}
+                    {/*    // state={props.state}*/}
+                    {/*// />}*/}
 
                     <Route path="/messages/*" element={
                         <DialogsContainer

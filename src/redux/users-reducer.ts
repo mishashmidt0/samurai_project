@@ -95,37 +95,37 @@ export const ussersReducer = (state: usersReducerPropsType = initialState, actio
 }
 
 // применяеться в userContainer
-export const followAC = (userId: number): followType => {
+export const follow = (userId: number): followType => {
     return {
         type: FOLLOW,
         userId
     }
 }
-export const unFollowAC = (userId: number): unfollowType => {
+export const unFollow = (userId: number): unfollowType => {
     return {
         type: UNFOLLOW,
         userId
     }
 }
-export const setUsersAC = (users: usersType[]): setUsersType => {
+export const setUsers = (users: usersType[]): setUsersType => {
     return {
         type: addUsers,
         users
     }
 }
-export const currentPageAC = (newCurrentPage: number): currentPageType => {
+export const changeCurrentPages = (newCurrentPage: number): currentPageType => {
     return {
         type: changeCurrentPage,
         currentPage: newCurrentPage
     }
 }
-export const setTotalUsersCountAC = (totalUsersCount: number): totalUsersCountType => {
+export const setTotalUsersCount = (totalUsersCount: number): totalUsersCountType => {
     return {
         type: changeTotalUsersCount,
         totalUsersCount
     }
 }
-export const changeIsFetchingAC = (isFetching: boolean): isFetchingChangeType => {
+export const changeIsFetching = (isFetching: boolean): isFetchingChangeType => {
     return {
         type: isFetchingChange,
         isFetching

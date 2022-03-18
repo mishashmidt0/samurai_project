@@ -1,4 +1,5 @@
-import {forAction, forActionType} from "./Store";
+import {forActionType} from "./Store";
+import {forAction} from "./profile-reducer";
 
 let initialState = {}
 export const sitebarReducer = (state: {} = initialState, action: forAction) => {

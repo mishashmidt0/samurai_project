@@ -1,6 +1,4 @@
-import {v1} from "uuid";
-import {profileReducer} from "./profile-reducer";
-import {dialogReducer} from "./dialog-reducer";
+import {forAction,} from "./profile-reducer";
 
 
 //enum
@@ -32,11 +30,8 @@ export type forState = {
     },
     messages: forPropsMessages
 }
-export type forAction = {
-    type: string;
-    chengeProfileTextArea?: string;
-    chengeMessageTextArea?: string;
-}
+
+
 export type forStore = {
     _state: forState,
     getState: () => forState,
@@ -48,78 +43,78 @@ export type forStore = {
     dispatch: (action: forAction) => void
 }
 
-export const store: forStore = {
-    _state: {
-        profile: {
-            postData: [
-                {id: v1(), post: "Hello it's my first post",},
-                {id: v1(), post: "How are you?"},
-                {id: v1(), post: 'I`m fine and you?'},
-                {id: v1(), post: "I am play chess"},
-                {id: v1(), post: 'Good'},
-                {id: v1(), post: 'Good-bye'}
-            ],
-            changeText: "it-incubator",
-        }, messages: {
-            messageData: [
-                {id: v1(), message: 'Hi'},
-                {id: v1(), message: 'Where are you?'},
-                {id: v1(), message: 'I`m fine and you?'},
-                {id: v1(), message: 'Nice'},
-                {id: v1(), message: 'Good'},
-                {id: v1(), message: 'Good-bye',}
-            ],
-            dailogsData: [
-                {id: v1(), name: 'Misha', avatar: 1},
-                {id: v1(), name: 'Nika', avatar: 2},
-                {id: v1(), name: 'Max', avatar: 3},
-                {id: v1(), name: 'Anna', avatar: 4},
-                {id: v1(), name: 'Lex', avatar: 5,},
-                {id: v1(), name: 'Mila', avatar: 6}
-            ],
-            changeMessagesArea: '',
-        },
-    },
-    _callSubscriber(): void {
-    },
-    getState() {
-        return this._state;
-    },
-    // _addPost() {
-    //     const post = {
-    //         id: v1(), post: this._state.profile.changeText,
-    //     };
-    //     if (post.post.trim() === '') return;
-    //     this._state.profile.postData.unshift(post);
-    //     this._state.profile.changeText = '';
-    //     this._callSubscriber(this._state);
-    // }, _addMessage() {
-    //     const message = {
-    //         id: v1(), message: this._state.messages.changeMessagesArea,
-    //     };
-    //     if (message.message.trim() === '') return;
-    //     this._state.messages.messageData.push(message);
-    //     this._state.messages.changeMessagesArea = '';
-    //     this._callSubscriber(this._state);
-    // }, _changeProfileTextarea(change: string) {
-    //     this._state.profile.changeText = change;
-    //     this._callSubscriber(this._state);
-    // },
-    //     _changeMessageArea(change: string) {
-    //     this._state.messages.changeMessagesArea = change;
-    //     this._callSubscriber(this._state);
-    // },
-    subscribe(observe: (state: forState) => void) {
-        this._callSubscriber = observe;
-    },
-
-    dispatch(action) {
-        this._state.profile = profileReducer(this._state.profile, action) as {
-            postData: forPostData
-            changeText: string
-        }
-        this._state.messages = dialogReducer(this._state.messages, action) as forPropsMessages
-        this._callSubscriber(this._state)
-    },
-};
+// export const store: forStore = {
+//     _state: {
+//         profile: {
+//             postData: [
+//                 {id: v1(), post: "Hello it's my first post",},
+//                 {id: v1(), post: "How are you?"},
+//                 {id: v1(), post: 'I`m fine and you?'},
+//                 {id: v1(), post: "I am play chess"},
+//                 {id: v1(), post: 'Good'},
+//                 {id: v1(), post: 'Good-bye'}
+//             ],
+//             changeText: "it-incubator",
+//         }, messages: {
+//             messageData: [
+//                 {id: v1(), message: 'Hi'},
+//                 {id: v1(), message: 'Where are you?'},
+//                 {id: v1(), message: 'I`m fine and you?'},
+//                 {id: v1(), message: 'Nice'},
+//                 {id: v1(), message: 'Good'},
+//                 {id: v1(), message: 'Good-bye',}
+//             ],
+//             dailogsData: [
+//                 {id: v1(), name: 'Misha', avatar: 1},
+//                 {id: v1(), name: 'Nika', avatar: 2},
+//                 {id: v1(), name: 'Max', avatar: 3},
+//                 {id: v1(), name: 'Anna', avatar: 4},
+//                 {id: v1(), name: 'Lex', avatar: 5,},
+//                 {id: v1(), name: 'Mila', avatar: 6}
+//             ],
+//             changeMessagesArea: '',
+//         },
+//     },
+//     _callSubscriber(): void {
+//     },
+//     getState() {
+//         return this._state;
+//     },
+//     // _addPost() {
+//     //     const post = {
+//     //         id: v1(), post: this._state.profile.changeText,
+//     //     };
+//     //     if (post.post.trim() === '') return;
+//     //     this._state.profile.postData.unshift(post);
+//     //     this._state.profile.changeText = '';
+//     //     this._callSubscriber(this._state);
+//     // }, _addMessage() {
+//     //     const message = {
+//     //         id: v1(), message: this._state.messages.changeMessagesArea,
+//     //     };
+//     //     if (message.message.trim() === '') return;
+//     //     this._state.messages.messageData.push(message);
+//     //     this._state.messages.changeMessagesArea = '';
+//     //     this._callSubscriber(this._state);
+//     // }, _changeProfileTextarea(change: string) {
+//     //     this._state.profile.changeText = change;
+//     //     this._callSubscriber(this._state);
+//     // },
+//     //     _changeMessageArea(change: string) {
+//     //     this._state.messages.changeMessagesArea = change;
+//     //     this._callSubscriber(this._state);
+//     // },
+//     // subscribe(observe: (state: forState) => void) {
+//     //     this._callSubscriber = observe;
+//     // },
+//
+//     // dispatch(action) {
+//     //     this._state.profile = profileReducer(this._state.profile, action) as {
+//     //         postData: forPostData
+//     //         changeText: string
+//     //     }
+//     //     this._state.messages = dialogReducer(this._state.messages, action) as forPropsMessages
+//     //     this._callSubscriber(this._state)
+//     // },
+// };
 
