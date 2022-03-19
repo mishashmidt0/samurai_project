@@ -1,7 +1,7 @@
 import './App.css';
-import Header from './components/header/Header';
 import Conteiner from './components/conteiner/Conteiner';
 import React from 'react';
+import {HeaderContainerApi} from "./components/header/HeaderContainer";
 
 
 export type forProps = {
@@ -11,7 +11,7 @@ export type forProps = {
 
 export function App(props: forProps) {
     return (<div className="wrapper">
-            <Header/>
+            <HeaderContainerApi/>
             <Conteiner
                 // state={ props.state }
                 // dispatch={ props.dispatch }

@@ -33,7 +33,7 @@ export type profileType = {
     fullName: string | null
     lookingForAJob: boolean | null
     lookingForAJobDescription: string | null
-    photos: { small: string | null, large: string | null }
+    photos: { small: string, large: string }
     userId: number | null
 } | null
 type setUserProfile = {

@@ -9,7 +9,7 @@ function Nav() {
 
             <nav className={s.nav}>
                 <ul>
-                    <li><Link to="/profile">My profile</Link></li>
+                    <li><Link to="/profile/1">My profile</Link></li>
                     <li><Link to="/news">News</Link></li>
                     <li><Link to="/messages">Messenger</Link></li>
                     <li><Link to="/users">Users</Link></li>

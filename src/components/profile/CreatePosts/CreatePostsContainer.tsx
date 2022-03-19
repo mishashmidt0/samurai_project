@@ -29,7 +29,8 @@ import {addPost, chengeMessageTextArea} from "../../../redux/profile-reducer";
 let mapStateToProps = (state: AppStateType) => {
     return {
         changeText: state.profileReducer.changeText,
-        postData: state.profileReducer.postData
+        postData: state.profileReducer.postData,
+        profile: state.profileReducer.profile
     }
 }
 // let mapDispatchToProps = (dispatch: (action: forAction) => void) => {
@@ -46,7 +47,7 @@ let mapStateToProps = (state: AppStateType) => {
 //     }
 // }
 
-export const SuperCreatePostContainer =
+export const SuperProfileContainer =
     connect(mapStateToProps, {
             addPost,
             chengeMessageTextArea

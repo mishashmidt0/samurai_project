@@ -1,5 +1,4 @@
 import Nav from '../navigation/Navigation';
-import Profile from '../profile/Profile';
 import NotFound from '../notfound/NotFound';
 
 import s from './Conteiner.module.css';
@@ -17,7 +16,7 @@ function Conteiner(props: forProps) {
             <Nav/>
             <div className={s.conteiner}>
                 <Routes>
-                    <Route path="/profile/*" element={
+                    <Route path="/profile/:id" element={
                         <ProfileContainer/>
                     }/>
                     {/*// <Profile*/}

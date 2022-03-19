@@ -2,15 +2,18 @@ import React from 'react';
 
 import style from './Photo.module.css';
 
+type photoType = {
+    photo: string
+}
 
-function Photo () {
-	return (
-		<div className={ style.photo }>
-			<a href="https://vk.com/images/camera_200.png"> <img src="https://vk.com/images/camera_200.png" alt="my_photo"/></a>
-			<button>Edit</button>
-		</div>
+function Photo(props: photoType) {
+    return (
+        <div className={style.photo}>
+            <a href={props.photo}> <img src={props.photo} alt="my_photo" height={220}/></a>
+            <button>Edit</button>
+        </div>
 
-	)
+    )
 }
 
 export default Photo;

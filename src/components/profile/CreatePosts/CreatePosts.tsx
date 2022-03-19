@@ -2,6 +2,10 @@ import s from './CreatePosts.module.css';
 import React, {ChangeEvent} from 'react';
 import {Post} from "../Post/Post";
 import {forPostData} from "../../../redux/Store";
+import {profileType} from "../../../redux/profile-reducer";
+import Photo from "../photo/Photo";
+import Info from "../myinfo/Info";
+import {Preloader} from "../../common/Preloader";
 
 
 type forCreatePost = {
@@ -9,6 +13,7 @@ type forCreatePost = {
     addPost: (text: string) => void
     changeText: string
     postData: forPostData
+    profile: profileType | null
 }
 
 export function CreatePost(props: forCreatePost) {
@@ -18,18 +23,30 @@ export function CreatePost(props: forCreatePost) {
         props.chengeMessageTextArea(text)
         // props.dispatch({type: 'CHANGE-PROFILE', chengeProfileTextArea: e.currentTarget.value})
     }
-    return (
-        <section className={s.createPost}>
-            <img src="https://vk.com/images/camera_200.png" alt="logo" width={30} height={30}/>
-            <textarea onChange={onPostChange} value={props.changeText} name="Posts" id="Posts" cols={30} rows={10} placeholder="  What`s new?"/>
 
+    if (!props.profile) {
+        return <Preloader/> // если нет данных профиля
+    }
+    return (
+
+        <div className={s.container}>
+            <Photo photo={props.profile?.photos.large as string}/>
             <div>
-                <button onClick={() => props.addPost(props.changeText)}>Create</button>
-                <button>Remove</button>
+                <Info myName={"Misha Shmidt"} status="I like a dog" languages={"Russian"}/>
+                <section className={s.createPost}>
+                    <img src={props.profile?.photos.small} alt="logo" width={30} height={30}/>
+                    <textarea onChange={onPostChange} value={props.changeText} name="Posts" id="Posts" cols={30} rows={10} placeholder="  What`s new?"/>
+
+                    <div>
+                        <button onClick={() => props.addPost(props.changeText)}>Create</button>
+                        <button>Remove</button>
+                    </div>
+
+                    {props.postData.map((p) => <Post messages={p.post} key={p.id} photo={props.profile?.photos.small as string}/>)}
+                </section>
             </div>
 
-            {props.postData.map((p) => <Post messages={p.post} key={p.id}/>)}
-        </section>
+        </div>
     )
 }
 
