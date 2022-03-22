@@ -4,6 +4,7 @@ import avatar from '../../assets/images/avatar.jpg'
 import s from './users-style.module.css'
 import {v1} from "uuid";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type usersPropsType = {
     users: Array<usersType>,
@@ -26,6 +27,22 @@ export function Users(props: usersPropsType) {
         pages.push(i)
     }
     console.log('Количество пользователей:', props.totalUserCount)
+
+    const postRequestFollow = (userId: number) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {withCredentials: true, headers: {'API-KEY': '918ec3c9-ea92-470f-ae86-9d6bbf63b653'}}).then(
+            response => {
+                if (!response.data.resultCode) props.follow(userId)
+            }
+        )
+    }
+    const postRequestUnFollow = (userId: number) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {withCredentials: true, headers: {'API-KEY': '918ec3c9-ea92-470f-ae86-9d6bbf63b653'}}).then(
+            response => {
+                if (!response.data.resultCode) props.unFollow(userId)
+            }
+        )
+    }
+
     return (
         <div>
             {pages.map((p) => <span key={v1()} className={props.currentPage === p ? s.active_page : s.pages} onClick={(e) => props.onPageChanged(p)}>{p}</span>)}
@@ -34,14 +51,14 @@ export function Users(props: usersPropsType) {
                     return (
                         <div key={u.id}>
 
-                            <NavLink  to={`../profile/${u.id}`}>
+                            <NavLink to={`../profile/${u.id}`}>
                                 <img src={u.photos.small ? u.photos.small : avatar} alt="avatar" height={100}/>
                             </NavLink>
 
 
-                            {u.followed ? <button onClick={() => props.unFollow(u.id)}>Follow</button> :
+                            {u.followed ? <button onClick={() => postRequestUnFollow(u.id)}>Follow</button> :
 
-                                <button onClick={() => props.follow(u.id)}>Unfollow</button>}
+                                <button onClick={() => postRequestFollow(u.id)}>Unfollow</button>}
 
                             <div>
                                 <span>{u.name}</span>
