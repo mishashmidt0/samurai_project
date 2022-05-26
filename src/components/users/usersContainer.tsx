@@ -33,7 +33,7 @@ class UsersAPIComponent extends React.Component<usersPropsType> {
         )
     }
 
-    onPageChanged = (pageNumber: number) => {
+    onPageChanged(pageNumber: number) {
         this.props.changeIsFetching(true)
         this.props.changeCurrentPages(pageNumber);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials: true}).then(
@@ -63,29 +63,6 @@ let mapStateToProps = (state: AppStateType) => {
         isFetching: state.usersReducer.isFetching,
     }
 }
-
-// let mapDispatchToProps = (dispatch: (action: actionType) => void) => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(follow(userId))
-//         },
-//         setUsers: (users: usersType[]) => {
-//             dispatch(setUsers(users));
-//         },
-//         unfollow: (id: number) => {
-//             dispatch(unFollow(id))
-//         },
-//         changeCurrentPage: (newCurrentPage: number) => {
-//             dispatch(currentPage(newCurrentPage))
-//         },
-//         setTotalUsersCount: (totalUsersCount: number) => {
-//             dispatch(setTotalUsersCount(totalUsersCount))
-//         },
-//         changeIsFetching: (isFitching: boolean) => {
-//             dispatch(changeIsFetching(isFitching))
-//         },
-//     }
-// }
 
 
 export const UsersContainer =
