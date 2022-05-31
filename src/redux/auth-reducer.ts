@@ -1,3 +1,6 @@
+import {usersAPI} from "../components/users/api";
+import {toggleFollowingProgress, unFollowSuccess} from "./users-reducer";
+
 type setUserDataType = {
     type: 'SET-USER-DATA',
     data: usersReducerPropsType
@@ -44,5 +47,17 @@ export const setUserData = (userid: number, email: string, login: string, isFetc
             isFetching,
             isAuth,
         }
+    }
+}
+export const getMe = () => {
+    return (dispatch: any) => {
+        usersAPI.getMyLink()
+            .then(
+                response => {
+                    if (response.data.resultCode === 0) {
+                        const {email, id, login} = response.data.data
+                        dispatch(setUserData(id, email, login, true, true))
+                    }
+                })
     }
 }
