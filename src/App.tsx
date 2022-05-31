@@ -13,8 +13,6 @@ export function App(props: forProps) {
     return (<div className="wrapper">
             <HeaderContainerApi/>
             <Conteiner
-                // state={ props.state }
-                // dispatch={ props.dispatch }
             />
         </div>
 

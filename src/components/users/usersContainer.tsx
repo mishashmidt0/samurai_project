@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {changeCurrentPages, changeIsFetching, follow, setTotalUsersCount, setUsers, unFollow, usersType} from "../../redux/users-reducer";
+import {changeCurrentPages, changeIsFetching, follow, getUsersThunk, setTotalUsersCount, setUsers, unFollow, usersType} from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import axios from "axios";
 import {Users} from "./users";
 import {Preloader} from "../common/Preloader";
+import {usersAPI} from "./api";
 
 type usersPropsType = {
     users: Array<usersType>,
@@ -18,6 +19,7 @@ type usersPropsType = {
     currentPage: number
     setTotalUsersCount: (totalUsersCount: number) => void
     isFetching: boolean
+    getUsersThunk: (pageNumber: number, pageSize: number) => void
 }
 
 class UsersAPIComponent extends React.Component<usersPropsType> {
@@ -36,19 +38,17 @@ class UsersAPIComponent extends React.Component<usersPropsType> {
     onPageChanged(pageNumber: number) {
         this.props.changeIsFetching(true)
         this.props.changeCurrentPages(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials: true}).then(
-            response => {
-                this.props.changeIsFetching(false)
-                this.props.setUsers(response.data.items)
-            }
-        )
+        usersAPI.getusers(pageNumber, this.props.pageSize)
+            .then(response => {
+                    this.props.changeIsFetching(false)
+                    this.props.setUsers(response.data.items)
+                }
+            )
     }
 
     render() {
-        {
-            if (this.props.isFetching) {
-                return this.props.isFetching ? <Preloader/> : null
-            }
+        if (this.props.isFetching) {
+            return this.props.isFetching ? <Preloader/> : null
         }
         return <Users {...this.props} onPageChanged={this.onPageChanged}/>
     }
@@ -73,6 +73,7 @@ export const UsersContainer =
         changeCurrentPages,
         setTotalUsersCount,
         changeIsFetching,
+        getUsersThunk,
     })(UsersAPIComponent)
 
 

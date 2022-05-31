@@ -1,3 +1,5 @@
+import {usersAPI} from "../components/users/api";
+
 type followType = {
     type: 'FOLLOW',
     userId: number
@@ -58,7 +60,7 @@ let initialState: usersReducerPropsType = {
     isFetching: true,
 }
 
-export const ussersReducer = (state: usersReducerPropsType = initialState, action: actionType) => {
+export const usersReducer = (state: usersReducerPropsType = initialState, action: actionType) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -94,7 +96,7 @@ export const ussersReducer = (state: usersReducerPropsType = initialState, actio
 
 }
 
-// применяеться в userContainer
+
 export const follow = (userId: number): followType => {
     return {
         type: FOLLOW,
@@ -129,5 +131,18 @@ export const changeIsFetching = (isFetching: boolean): isFetchingChangeType => {
     return {
         type: isFetchingChange,
         isFetching
+    }
+}
+
+export const getUsersThunk = (pageNumber: number, pageSize: number) => {
+    return (dispatch: any) => {
+        dispatch(changeIsFetching(true))
+        usersAPI.getusers(pageNumber, pageSize)
+            .then(data => {
+                    dispatch(changeIsFetching(false))
+                    dispatch(setUsers(data.items))
+                    dispatch(setTotalUsersCount(data.totalCount))
+                }
+            )
     }
 }
