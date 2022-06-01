@@ -21,11 +21,10 @@ export function CreatePost(props: forCreatePost) {
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
         let text = e.currentTarget.value
         props.chengeMessageTextArea(text)
-        // props.dispatch({type: 'CHANGE-PROFILE', chengeProfileTextArea: e.currentTarget.value})
     }
 
     if (!props.profile) {
-        return <Preloader/> // если нет данных профиля
+        return <Preloader/>
     }
     return (
 

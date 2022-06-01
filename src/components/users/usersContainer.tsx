@@ -4,13 +4,12 @@ import {changeCurrentPages, follow, getUsersThunk, setTotalUsersCount, unfollow,
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./users";
 import {Preloader} from "../common/Preloader";
-import {usersAPI} from "./api";
+
 
 type usersPropsType = {
     users: Array<usersType>,
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (item: usersType) => void
     changeCurrentPages: (newCurrentPage: number) => void
     pageSize: number
     totalUserCount: number
@@ -24,10 +23,12 @@ type usersPropsType = {
 class UsersAPIComponent extends React.Component<usersPropsType> {
 
     componentDidMount() {
-         this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
+        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
     }
 
-  
+    onPageChanged(pageNumber: number) {
+        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
+    }
 
     render() {
         if (this.props.isFetching) {

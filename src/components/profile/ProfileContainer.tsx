@@ -14,9 +14,9 @@ type ProfileContainerType = {
 
 
 class ProfileContainer extends React.Component <ProfileContainerType> {
-
+    
     componentDidMount() {
-        let userId = this.props.id ? this.props.id : 1;
+        let userId = this.props.id ? this.props.id : 2;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(
             response => {
                 this.props.setUserProfile(response.data)

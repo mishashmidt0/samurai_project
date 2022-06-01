@@ -23,7 +23,7 @@ function Conteiner() {
                         />
                     }/>
                     <Route path="/users" element={
-                        <UsersContainer />
+                        <UsersContainer/>
                     }/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
